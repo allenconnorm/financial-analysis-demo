@@ -1,0 +1,68 @@
+//budget variance analysis using dax.
+//demo for Portland BES financial analyst position
+
+//basic variance
+Budget Variance = 
+    [Actual Expenditure] - [Budgeted Amount]
+
+//variance percentage
+Budget Variance % = 
+    DIVIDE(
+        [Budget Variance],
+        [Budgeted Amount],
+        0
+    )
+
+//YTD calculations
+YTD Actual = 
+    CALCULATE(
+        SUM('Budget_Data'[Actual Amount]),
+        DATESYTD('Budget_Data'[Transaction_Date])
+    )
+
+YTD Budget = 
+    CALCULATE(
+        SUM('Budget_Data'[Budget_Amount]),
+        DATESYTD('Budget_Data'[Transaction_Date])
+    )
+
+//variance status indicator
+Variance Status = 
+    VAR VariancePercent = [Budget Variance %]
+    RETURN
+        SWITCH(
+            TRUE(),
+            VariancePercent > 0.1, "🔴 Over Budget (>10%)",
+            VariancePercent > 0.00, "🟡 Warning (0.01-10% over)",
+            VariancePercent < 0.0, "🟢 Under Budget"
+        )
+
+//calculate remaining budget
+Remaining Budget =
+    [YTD Budget] - [YTD Actual]
+
+//calculating budget utilization rate
+Budget Utilization % = 
+    DIVIDE([YTD Actual], [YTD Budget], 0)
+
+//monthly variance
+Monthly Variance = 
+    VAR CurrentMonth = 
+        CALCULATE(
+            SUM('Budget_Data'[Actual_Amount]),
+            MONTH('Budget_Data'[Transaction_Date]) = MONTH(TODAY())
+        )
+
+    VAR PreviousMonth = 
+        CALCULATE(
+            SUM('Budget_Data'[Actual_Amount]),
+            MONTH('Budget_Data'[Transaction_Date]) = MONTH(TODAY()) - 1
+        )
+
+    RETURN CurrentMonth - PreviousMonth
+
+//total budgeted amount
+Budgeted Amount = SUM('Budget_Data'[Budget_Amount])
+
+//total expenditure
+Actual Expenditure = SUM('Budget_Data'[Actual_Amount])

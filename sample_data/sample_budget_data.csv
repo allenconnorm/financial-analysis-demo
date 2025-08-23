@@ -1,0 +1,36 @@
+Fiscal_Year,Period,Division_Code,Division_Name,Account_Code,GL_Account_Description,Budget_Amount,Actual_Amount,Transaction_Date
+2025,1,DIR001,Director Office,11001,Salaries - Management,125000,118500,7/15/2024
+2025,1,DIR001,Director Office,11002,Benefits - Management,37500,35600,7/15/2024
+2025,1,DIR001,Director Office,21001,Office Supplies,5000,4200,7/20/2024
+2025,1,DIR001,Director Office,31001,Professional Services,25000,28500,7/25/2024
+2025,1,BSG001,Business Services Group,11001,Salaries - Analysts,95000,92300,7/15/2024
+2025,1,BSG001,Business Services Group,11002,Benefits - Staff,28500,27700,7/15/2024
+2025,1,BSG001,Business Services Group,21001,IT Equipment,15000,18200,7/18/2024
+2025,1,BSG001,Business Services Group,31001,Software Licenses,12000,11800,7/22/2024
+2025,1,BSG001,Business Services Group,31002,Training & Development,8000,6500,7/28/2024
+2025,1,WOM001,Watershed Operations,11001,Salaries - Field Staff,185000,179500,7/15/2024
+2025,1,WOM001,Watershed Operations,11002,Benefits - Field Staff,55500,53900,7/15/2024
+2025,1,WOM001,Watershed Operations,21001,Vehicle Fuel,25000,27800,7/20/2024
+2025,1,WOM001,Watershed Operations,21002,Equipment Maintenance,35000,42100,7/25/2024
+2025,1,WOM001,Watershed Operations,31001,Contractor Services,75000,68200,7/30/2024
+2025,2,DIR001,Director Office,11001,Salaries - Management,125000,121200,8/15/2024
+2025,2,DIR001,Director Office,11002,Benefits - Management,37500,36400,8/15/2024
+2025,2,DIR001,Director Office,21001,Office Supplies,5000,3800,8/18/2024
+2025,2,DIR001,Director Office,31001,Professional Services,25000,31200,8/22/2024
+2025,2,BSG001,Business Services Group,11001,Salaries - Analysts,95000,96800,8/15/2024
+2025,2,BSG001,Business Services Group,11002,Benefits - Staff,28500,29000,8/15/2024
+2025,2,BSG001,Business Services Group,21001,IT Equipment,15000,13500,8/20/2024
+2025,2,BSG001,Business Services Group,31001,Software Licenses,12000,12300,8/25/2024
+2025,2,WOM001,Watershed Operations,11001,Salaries - Field Staff,185000,188200,8/15/2024
+2025,2,WOM001,Watershed Operations,11002,Benefits - Field Staff,55500,56500,8/15/2024
+2025,2,WOM001,Watershed Operations,21001,Vehicle Fuel,25000,29200,8/18/2024
+2025,2,WOM001,Watershed Operations,21002,Equipment Maintenance,35000,38500,8/22/2024
+2025,2,WOM001,Watershed Operations,31001,Contractor Services,75000,82100,8/28/2024
+2025,3,DIR001,Director Office,11001,Salaries - Management,125000,119800,9/15/2024
+2025,3,DIR001,Director Office,11002,Benefits - Management,37500,36000,9/15/2024
+2025,3,DIR001,Director Office,21001,Office Supplies,5000,6200,9/20/2024
+2025,3,BSG001,Business Services Group,11001,Salaries - Analysts,95000,94500,9/15/2024
+2025,3,BSG001,Business Services Group,31001,Software Licenses,12000,15800,9/25/2024
+2025,3,WOM001,Watershed Operations,11001,Salaries - Field Staff,185000,182300,9/15/2024
+2025,3,WOM001,Watershed Operations,21001,Vehicle Fuel,25000,31500,9/18/2024
+2025,3,WOM001,Watershed Operations,21002,Equipment Maintenance,35000,45200,9/25/2024
