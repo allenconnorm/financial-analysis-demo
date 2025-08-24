@@ -10,10 +10,10 @@ Actual Expenditure = SUM('sample_budget_data'[Actual_Amount])
 Budget Amount = SUM('sample_budget_data'[Budget_Amount])
 
 // MEASURE 3:
-Budget Variance = [Actual Expenditure] - [Budgeted Amount]
+Budget Variance = [Actual Expenditure] - [Budget Amount]
 
 // MEASURE 4:
-Budget Variance % = DIVIDE([Budget Variance], [Budgeted Amount], 0)
+Budget Variance % = DIVIDE([Budget Variance], [Budget Amount], 0)
 
 // MEASURE 5:
 YTD Actual = 
