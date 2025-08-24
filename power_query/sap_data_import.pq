@@ -3,7 +3,7 @@
 
 let
     //import csv
-    Source = Csv.Document(File.Contents("sample_data\sample_budget_data.csv"), [Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+    Source = Csv.Document(File.Contents("C:\Users\allen\OneDrive\Documents\GitHub\CS314-Project-A\financial-analysis-demo\sample_data\sample_budget_data.csv"), [Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 
     //promote headers
     #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
@@ -67,6 +67,3 @@ let
 
 in 
     #"Sorted Rows"
-
-    
-    

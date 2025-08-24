@@ -1,68 +1,62 @@
 //budget variance analysis using dax.
 //demo for Portland BES financial analyst position
 
-//basic variance
-Budget Variance = 
-    [Actual Expenditure] - [Budgeted Amount]
+//IMPORTANT: each of these measures need to be added one at a time in Power BI data view
 
-//variance percentage
-Budget Variance % = 
-    DIVIDE(
-        [Budget Variance],
-        [Budgeted Amount],
-        0
-    )
+// MEASURE 1: Base measures first
+Actual Expenditure = SUM('sample-budget-data'[Actual_Amount])
 
-//YTD calculations
+// MEASURE 2:
+Budgeted Amount = SUM('sample-budget-data'[Budget_Amount])
+
+// MEASURE 3:
+Budget Variance = [Actual Expenditure] - [Budgeted Amount]
+
+// MEASURE 4:
+Budget Variance % = DIVIDE([Budget Variance], [Budgeted Amount], 0)
+
+// MEASURE 5:
 YTD Actual = 
-    CALCULATE(
-        SUM('Budget_Data'[Actual Amount]),
-        DATESYTD('Budget_Data'[Transaction_Date])
-    )
+CALCULATE(
+    SUM('sample-budget-data'[Actual_Amount]),
+    DATESYTD('sample-budget-data'[Transaction_Date])
+)
 
+// MEASURE 6:
 YTD Budget = 
-    CALCULATE(
-        SUM('Budget_Data'[Budget_Amount]),
-        DATESYTD('Budget_Data'[Transaction_Date])
+CALCULATE(
+    SUM('sample-budget-data'[Budget_Amount]),
+    DATESYTD('sample-budget-data'[Transaction_Date])
+)
+
+// MEASURE 7:
+Variance Status = 
+VAR VariancePercent = [Budget Variance %]
+RETURN
+    SWITCH(
+        TRUE(),
+        VariancePercent > 0.1, "🔴 Over Budget",
+        VariancePercent > 0.05, "🟡 Warning",
+        VariancePercent < -0.05, "🟢 Under Budget",
+        "✅ On Track"
     )
 
-//variance status indicator
-Variance Status = 
-    VAR VariancePercent = [Budget Variance %]
-    RETURN
-        SWITCH(
-            TRUE(),
-            VariancePercent > 0.1, "🔴 Over Budget (>10%)",
-            VariancePercent > 0.00, "🟡 Warning (0.01-10% over)",
-            VariancePercent < 0.0, "🟢 Under Budget"
-        )
+// MEASURE 8:
+Remaining Budget = [YTD Budget] - [YTD Actual]
 
-//calculate remaining budget
-Remaining Budget =
-    [YTD Budget] - [YTD Actual]
+// MEASURE 9:
+Budget Utilization % = DIVIDE([YTD Actual], [YTD Budget], 0)
 
-//calculating budget utilization rate
-Budget Utilization % = 
-    DIVIDE([YTD Actual], [YTD Budget], 0)
-
-//monthly variance
+// MEASURE 10:
 Monthly Variance = 
-    VAR CurrentMonth = 
-        CALCULATE(
-            SUM('Budget_Data'[Actual_Amount]),
-            MONTH('Budget_Data'[Transaction_Date]) = MONTH(TODAY())
-        )
-
-    VAR PreviousMonth = 
-        CALCULATE(
-            SUM('Budget_Data'[Actual_Amount]),
-            MONTH('Budget_Data'[Transaction_Date]) = MONTH(TODAY()) - 1
-        )
-
-    RETURN CurrentMonth - PreviousMonth
-
-//total budgeted amount
-Budgeted Amount = SUM('Budget_Data'[Budget_Amount])
-
-//total expenditure
-Actual Expenditure = SUM('Budget_Data'[Actual_Amount])
+VAR CurrentMonth = 
+    CALCULATE(
+        SUM('sample-budget-data'[Actual_Amount]),
+        MONTH('sample-budget-data'[Transaction_Date]) = MONTH(TODAY())
+    )
+VAR PreviousMonth = 
+    CALCULATE(
+        SUM('sample-budget-data'[Actual_Amount]),
+        MONTH('sample-budget-data'[Transaction_Date]) = MONTH(TODAY()) - 1
+    )
+RETURN CurrentMonth - PreviousMonth
