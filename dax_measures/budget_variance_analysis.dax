@@ -7,7 +7,7 @@
 Actual Expenditure = SUM('sample_budget_data'[Actual_Amount])
 
 // MEASURE 2:
-Budgeted Amount = SUM('sample_budget_data'[Budget_Amount])
+Budget Amount = SUM('sample_budget_data'[Budget_Amount])
 
 // MEASURE 3:
 Budget Variance = [Actual Expenditure] - [Budgeted Amount]
