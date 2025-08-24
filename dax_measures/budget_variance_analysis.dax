@@ -4,10 +4,10 @@
 //IMPORTANT: each of these measures need to be added one at a time in Power BI data view
 
 // MEASURE 1: Base measures first
-Actual Expenditure = SUM('sample-budget-data'[Actual_Amount])
+Actual Expenditure = SUM('sample_budget_data'[Actual_Amount])
 
 // MEASURE 2:
-Budgeted Amount = SUM('sample-budget-data'[Budget_Amount])
+Budgeted Amount = SUM('sample_budget_data'[Budget_Amount])
 
 // MEASURE 3:
 Budget Variance = [Actual Expenditure] - [Budgeted Amount]
@@ -18,15 +18,15 @@ Budget Variance % = DIVIDE([Budget Variance], [Budgeted Amount], 0)
 // MEASURE 5:
 YTD Actual = 
 CALCULATE(
-    SUM('sample-budget-data'[Actual_Amount]),
-    DATESYTD('sample-budget-data'[Transaction_Date])
+    SUM('sample_budget_data'[Actual_Amount]),
+    DATESYTD('sample_budget_data'[Transaction_Date])
 )
 
 // MEASURE 6:
 YTD Budget = 
 CALCULATE(
-    SUM('sample-budget-data'[Budget_Amount]),
-    DATESYTD('sample-budget-data'[Transaction_Date])
+    SUM('sample_budget_data'[Budget_Amount]),
+    DATESYTD('sample_budget_data'[Transaction_Date])
 )
 
 // MEASURE 7:
@@ -51,12 +51,12 @@ Budget Utilization % = DIVIDE([YTD Actual], [YTD Budget], 0)
 Monthly Variance = 
 VAR CurrentMonth = 
     CALCULATE(
-        SUM('sample-budget-data'[Actual_Amount]),
-        MONTH('sample-budget-data'[Transaction_Date]) = MONTH(TODAY())
+        SUM('sample_budget_data'[Actual_Amount]),
+        MONTH('sample_budget_data'[Transaction_Date]) = MONTH(TODAY())
     )
 VAR PreviousMonth = 
     CALCULATE(
-        SUM('sample-budget-data'[Actual_Amount]),
-        MONTH('sample-budget-data'[Transaction_Date]) = MONTH(TODAY()) - 1
+        SUM('sample_budget_data'[Actual_Amount]),
+        MONTH('sample_budget_data'[Transaction_Date]) = MONTH(TODAY()) - 1
     )
 RETURN CurrentMonth - PreviousMonth
