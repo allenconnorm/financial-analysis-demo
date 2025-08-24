@@ -47,7 +47,7 @@ Remaining Budget = [YTD Budget] - [YTD Actual]
 // MEASURE 9:
 Budget Utilization % = DIVIDE([YTD Actual], [YTD Budget], 0)
 
-// MEASURE 10:
+// MEASURE 10: couldnt get this one to work properly. putting a pin in it for now
 Monthly Variance = 
 VAR CurrentMonth = 
     CALCULATE(
